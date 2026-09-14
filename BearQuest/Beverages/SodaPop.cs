@@ -10,13 +10,12 @@ namespace BearQuest.Beverages
     internal class SodaPop : Drink
     {
         public SodaPop() : base("SodaPop", 10) { }
-        public override void Drink()
+        public override void drink()
         {
             if( use())
             {
                 Console.WriteLine("You drink a can of cola");
             }
         }
-    {
     }
 }

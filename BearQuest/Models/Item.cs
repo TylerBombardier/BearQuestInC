@@ -31,7 +31,7 @@ namespace BearQuest.Models
             }
         }
 
-        public string toString()
+        public override string ToString()
         {
             return Name;
         }

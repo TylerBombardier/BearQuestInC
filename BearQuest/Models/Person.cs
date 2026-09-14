@@ -57,7 +57,7 @@ namespace BearQuest.Models
                 {
                     HydrationValue += temp.HydrationValue + HydrationValue;
                 }
-                temp.Drink();
+                temp.drink();
             } else
             {
                 Console.WriteLine("You don't need to use that item right now");
@@ -143,7 +143,7 @@ namespace BearQuest.Models
             }
         }
 
-        public string toString()
+        public override string ToString()
         {
             return "Character stats: \n Name: " + Name
                     + " \n Hydration: " + HydrationValue

@@ -10,7 +10,7 @@ namespace BearQuest.Beverages
     internal class BottledWater : Drink
     {
         public BottledWater() : base("Water", 20) { }
-        public override void Drink()
+        public override void drink()
         {
             if( use())
             {
