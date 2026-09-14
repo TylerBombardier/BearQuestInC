@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BearQuest.Beverages;
+using BearQuest.Models;
+using BearQuest.rawFood;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,22 +13,119 @@ namespace BearQuest
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to Bear Quest");
+            Console.WriteLine("Please enter your name:");
+            Person mainCharacter = new Person(Console.ReadLine());
 
+            //Display our main menu
+            DisplayMainMenu(mainCharacter);
+
+            Console.WriteLine("Thank you for playing Bear Quest");
         }
 
-        public static void DisplayMainMenu()
+        public static void DisplayMainMenu(Person mainCharacter)
         {
+            Random random = new Random();
 
+            int bearDamage;
+            char userInput = '0';
+
+            do
+            {
+                Console.WriteLine("------------------------");
+                Console.WriteLine("Main Menu");
+                Console.WriteLine("------------------------");
+                Console.WriteLine(mainCharacter);
+                Console.WriteLine("------------------------");
+                Console.WriteLine("What would you like to do?");
+                Console.WriteLine("Look at inventory (I)");
+                Console.WriteLine("Explore (E)");
+                Console.WriteLine("Quit (X)");
+                Console.WriteLine("Please enter a letter:");
+
+                userInput = char.ToUpper(Console.ReadLine()[0]); // Will accept: I,i,E,e,X,x
+
+                switch (userInput)
+                {
+                    case 'I':
+                        InventoryMenu(mainCharacter);
+                        break;
+                    case 'E':
+                        bearDamage = random.Next(50); // between 0 - 50
+
+                        Console.WriteLine("You got mauled by a bear! Take " + bearDamage + " damage!");
+
+                        mainCharacter.HealthLevel = (mainCharacter.HealthLevel - bearDamage);
+                        mainCharacter.HydrationValue = (mainCharacter.HydrationValue - 10);
+
+                        if (mainCharacter.HealthLevel <= 0 || mainCharacter.HydrationValue <= 0)
+                        {
+                            Console.WriteLine("You died");
+                            userInput = 'X';
+                        }
+                        else
+                        {
+                            AcquireRandomItem(mainCharacter);
+                        }
+                        break;
+                }
+
+            } while (userInput != 'X');
         }
 
-        public static void InventoryMenu()
+        public static void InventoryMenu(Person mainCharacter)
         {
+            char userInput = '0';
+            int item = 0;
 
+            do
+            {
+                mainCharacter.displayInventory();
+
+                Console.WriteLine("What would you like to do");
+                Console.WriteLine("Use an Item (U)");
+                Console.WriteLine("Cook Food (C)");
+                Console.WriteLine("Leave Inventory (X)");
+                Console.WriteLine("Please enter a letter:");
+                userInput = char.ToUpper(Console.ReadLine()[0]);
+
+                switch (userInput)
+                {
+                    case 'U':
+                        mainCharacter.displayInventory();
+                        Console.WriteLine("Which item would you like to use?");
+                        item = Console.ReadLine()[0]; //Get the digit
+
+                        mainCharacter.useItem(mainCharacter.Inventory[item]);
+
+                        break;
+                    case 'C':
+                        mainCharacter.displayInventory(Person.FOOD);
+
+                        Console.WriteLine("Which item would you like to cook?");
+                        item = Console.ReadLine()[0]; //Get the digit
+
+                        Food food = (Food)mainCharacter.Inventory[item];
+                        mainCharacter.cook(food);
+                        break;
+                }
+
+            } while (userInput != 'X');
         }
 
-        public static void acquireRandomItem()
+        public static void AcquireRandomItem(Person mainCharacter)
         {
+            Random random = new Random();
+            //Create a list of random items that can be picked-up
+            List<Item> itemList = [ new Berries(), new Venison(), new BottledWater(), new SodaPop() ];
 
+            //Pick a random number corresponding to the list of items
+            int randomNumber = random.Next(itemList.Count);
+
+            Console.WriteLine(itemList[randomNumber] + " was just added to your inventory");
+
+            //Add the random item to the player's inventory
+            mainCharacter.addToInventory(itemList[randomNumber]);
         }
     }
 }

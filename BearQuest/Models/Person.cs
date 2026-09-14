@@ -21,7 +21,9 @@ namespace BearQuest.Models
         public int HydrationValue { get; set; }
         public int HealthLevel { get; set; }
 
-        private List<Item> inventory = new List<Item>();
+        private List<Item> _Inventory = new List<Item>();
+
+        public List<Item> Inventory { get; set; }
 
         public Person(string name)
         {
@@ -34,7 +36,7 @@ namespace BearQuest.Models
         {
             if(item is Food && HealthLevel < 100)
             {
-                Food temp = item as Food;
+                Food temp = (Food)item;
                 if(HealthLevel + temp.RegenerationValue < 100)
                 {
                     HealthLevel = 100;
@@ -46,7 +48,7 @@ namespace BearQuest.Models
                 temp.eat();
             } else if (item is Drink && HydrationValue < 100)
             {
-                Drink temp = item as Drink;
+                Drink temp = (Drink)item;
                 if(HydrationValue + temp.HydrationValue < 100)
                 {
                     HydrationValue = 100;
@@ -61,11 +63,11 @@ namespace BearQuest.Models
                 Console.WriteLine("You don't need to use that item right now");
             }
 
-            int location = inventory.IndexOf(item);
+            int location = Inventory.IndexOf(item);
 
-            if (inventory[location].Quantity <= 0)
+            if (Inventory[location].Quantity <= 0)
             {
-                inventory.Remove(item);
+                Inventory.Remove(item);
             }
         }
 
@@ -75,7 +77,7 @@ namespace BearQuest.Models
 
             if(food.Quantity == 0)
             {
-                inventory.RemoveAt(inventory.IndexOf(food));
+                Inventory.RemoveAt(Inventory.IndexOf(food));
             }
 
             if(item != null)
@@ -90,9 +92,9 @@ namespace BearQuest.Models
             Console.WriteLine("----------------------------");
             Console.WriteLine("Item:\t Name:\t Quantity:");
             Console.WriteLine("----------------------------");
-            for (int i = 0; i < inventory.Count; i++)
+            for (int i = 0; i < Inventory.Count; i++)
             {
-                item = inventory[i];
+                item = Inventory[i];
                 Console.WriteLine(i + ")\t" + item + "\t\t X" + item.Quantity);
             }
             Console.WriteLine("----------------------------");
@@ -104,9 +106,9 @@ namespace BearQuest.Models
             Console.WriteLine("----------------------------");
             Console.WriteLine("Item:\t Name:\t Quantity:");
             Console.WriteLine("----------------------------");
-            for (int i = 0; i < inventory.Count; i++)
+            for (int i = 0; i < Inventory.Count; i++)
             {
-                item = inventory[i];
+                item = Inventory[i];
                 //Check if the item is Food or Drink, and if the type is drink or food
                 if (type == 0 && item is Food) {
                 Console.WriteLine(i + ")\t" + item + "\t\t X" + item.Quantity);
@@ -123,9 +125,9 @@ namespace BearQuest.Models
             bool found = false;
             Item temp = null;
 
-            for (int i = 0; i < inventory.Count; i++)
+            for (int i = 0; i < Inventory.Count; i++)
             {
-                temp = inventory[i];
+                temp = Inventory[i];
 
                 if (item.GetType == temp.GetType)
                 {
@@ -137,7 +139,7 @@ namespace BearQuest.Models
             if (!found)
             {
                 item.Quantity = 1;
-                inventory.Add(item);
+                Inventory.Add(item);
             }
         }
 
