@@ -17,6 +17,6 @@ namespace BearQuest.Models
             this._HydrationValue = hydrationValue;
         }
 
-        public abstract Drink drink();
+        public abstract void Drink();
     }
 }

@@ -55,7 +55,7 @@ namespace BearQuest.Models
                 {
                     HydrationValue += temp.HydrationValue + HydrationValue;
                 }
-                temp.drink();
+                temp.Drink();
             } else
             {
                 Console.WriteLine("You don't need to use that item right now");
