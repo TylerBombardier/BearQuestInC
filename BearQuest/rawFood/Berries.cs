@@ -10,7 +10,7 @@ namespace BearQuest.rawFood
 {
     internal class Berries : Food
     {
-        public Berries(string name, int regenerationValue) : base("Berries", 1) { }
+        public Berries() : base("Berries", 1) { }
 
         public override Food Cook()
         {
@@ -24,7 +24,7 @@ namespace BearQuest.rawFood
             }
             catch (ThreadInterruptedException e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.StackTrace);
             }
 
             Console.WriteLine("The berries are cooked. Hello Jelly!");

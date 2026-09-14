@@ -10,7 +10,7 @@ namespace BearQuest.rawFood
 {
     internal class Venison : Food
     {
-        public Venison(string name, int regenerationValue) : base("Venison", 1){}
+        public Venison() : base("Venison", 1){}
 
         public override Food Cook()
         {
@@ -24,7 +24,7 @@ namespace BearQuest.rawFood
             }
             catch (ThreadInterruptedException e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.StackTrace);
             }
 
             Console.WriteLine("The steak is cooked to perfection");
