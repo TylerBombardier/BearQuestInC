@@ -43,7 +43,14 @@ namespace BearQuest
                 Console.WriteLine("Quit (X)");
                 Console.WriteLine("Please enter a letter:");
 
-                userInput = char.ToUpper(Console.ReadLine()[0]); // Will accept: I,i,E,e,X,x
+                string input = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    continue;
+                }
+
+                userInput = char.ToUpper(input[0]); // Will accept: I,i,E,e,X,x
 
                 switch (userInput)
                 {
@@ -87,26 +94,62 @@ namespace BearQuest
                 Console.WriteLine("Cook Food (C)");
                 Console.WriteLine("Leave Inventory (X)");
                 Console.WriteLine("Please enter a letter:");
-                userInput = char.ToUpper(Console.ReadLine()[0]);
+
+                string input = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    continue;
+                }
+
+                userInput = char.ToUpper(input[0]);
 
                 switch (userInput)
                 {
                     case 'U':
                         mainCharacter.displayInventory();
-                        Console.WriteLine("Which item would you like to use?");
-                        item = Console.ReadLine()[0]; //Get the digit
 
-                        mainCharacter.useItem(mainCharacter.Inventory[item]);
+                        Console.WriteLine("Which item would you like to use?");
+
+                        string consumeInput = Console.ReadLine();
+
+                        if (!int.TryParse(consumeInput, out item))
+                        {
+                            Console.WriteLine("Please enter a valid number.");
+                            continue;
+                        }
+
+                        if (item < 0 || item >= mainCharacter.Inventory.Count)
+                        {
+                            Console.WriteLine("That item does not exist.");
+                            continue;
+                        }
+
+                        mainCharacter.UseItem(mainCharacter.Inventory[item]);
 
                         break;
+
                     case 'C':
-                        mainCharacter.displayInventory(Person.FOOD);
+                        mainCharacter.DisplayInventory(Person.FOOD);
 
                         Console.WriteLine("Which item would you like to cook?");
-                        item = Console.ReadLine()[0]; //Get the digit
+                        string cookInput = Console.ReadLine();
+
+                        if (!int.TryParse(cookInput, out item))
+                        {
+                            Console.WriteLine("Please enter a valid number.");
+                            continue;
+                        }
+
+                        if (item < 0 || item >= mainCharacter.Inventory.Count)
+                        {
+                            Console.WriteLine("That item does not exist.");
+                            continue;
+                        }
 
                         Food food = (Food)mainCharacter.Inventory[item];
-                        mainCharacter.cook(food);
+                        mainCharacter.Cook(food);
+
                         break;
                 }
 
@@ -125,7 +168,7 @@ namespace BearQuest
             Console.WriteLine(itemList[randomNumber] + " was just added to your inventory");
 
             //Add the random item to the player's inventory
-            mainCharacter.addToInventory(itemList[randomNumber]);
+            mainCharacter.AddToInventory(itemList[randomNumber]);
         }
     }
 }

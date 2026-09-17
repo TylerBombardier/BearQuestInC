@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BearQuest.Beverages;
+using BearQuest.rawFood;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,9 +50,15 @@ namespace BearQuest.Models
             this._Name = name;
             this._HydrationValue = 100;
             this._HealthLevel = 100;
+
+            AddToInventory(new Berries());
+            AddToInventory(new Venison());
+            AddToInventory(new Venison());
+            AddToInventory(new BottledWater());
+            AddToInventory(new SodaPop());
         }
 
-        public void useItem(Item item)
+        public void UseItem(Item item)
         {
             if(item is Food && HealthLevel < 100)
             {
@@ -89,7 +97,7 @@ namespace BearQuest.Models
             }
         }
 
-        public void cook(Food food)
+        public void Cook(Food food)
         {
             Item item = food.Cook();
 
@@ -100,7 +108,7 @@ namespace BearQuest.Models
 
             if(item != null)
             {
-                addToInventory(item);
+                AddToInventory(item);
             }
         }
 
@@ -118,7 +126,7 @@ namespace BearQuest.Models
             Console.WriteLine("----------------------------");
         }
 
-        public void displayInventory(int type)
+        public void DisplayInventory(int type)
         {
             Item item;
             Console.WriteLine("----------------------------");
@@ -138,7 +146,7 @@ namespace BearQuest.Models
         Console.WriteLine("----------------------------");
         }
 
-        public void addToInventory(Item item)
+        public void AddToInventory(Item item)
         {
             bool found = false;
             Item temp = null;
