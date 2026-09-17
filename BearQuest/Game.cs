@@ -90,7 +90,7 @@ namespace BearQuest
 
             do
             {
-                mainCharacter.displayInventory();
+                mainCharacter.DisplayInventory();
 
                 Console.WriteLine("What would you like to do");
                 Console.WriteLine("Use an Item (U)");
@@ -110,7 +110,7 @@ namespace BearQuest
                 switch (userInput)
                 {
                     case 'U':
-                        mainCharacter.displayInventory();
+                        mainCharacter.DisplayInventory();
 
                         Console.WriteLine("Which item would you like to use?");
 

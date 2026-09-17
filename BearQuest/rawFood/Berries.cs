@@ -15,7 +15,7 @@ namespace BearQuest.rawFood
 
         public override Food Cook()
         {
-            use();
+            Use();
 
             Console.WriteLine("You began to cook the berries");
 
