@@ -11,6 +11,7 @@ namespace BearQuest
 {
     internal class Game()
     {
+        // Starts up the game and displays the main menu
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Bear Quest");
@@ -23,6 +24,7 @@ namespace BearQuest
             Console.WriteLine("Thank you for playing Bear Quest");
         }
 
+        // Displays the main menu and handles user input
         public static void DisplayMainMenu(Person mainCharacter)
         {
             Random random = new Random();
@@ -80,6 +82,7 @@ namespace BearQuest
             } while (userInput != 'X');
         }
 
+        // Displays the inventory menu and handles user input
         public static void InventoryMenu(Person mainCharacter)
         {
             char userInput = '0';
@@ -156,6 +159,7 @@ namespace BearQuest
             } while (userInput != 'X');
         }
 
+        // Picks a random item from a list of items and adds it to the player's inventory
         public static void AcquireRandomItem(Person mainCharacter)
         {
             Random random = new Random();

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BearQuest.Models
 {
+    // Represents an item in the game with a name and quantity
     internal class Item
     {
         private string _Name;
@@ -29,7 +30,8 @@ namespace BearQuest.Models
             this._Quantity = 0;
         }
 
-        public bool use()
+        // Method to use the item, reducing its quantity by 1 if available
+        public bool Use()
         {
             if(_Quantity > 0)
             {

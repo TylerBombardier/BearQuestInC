@@ -10,6 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BearQuest.Models
 {
+    // Represents a person in the game with a name, hydration value, health level, and an inventory of items
     internal class Person
     {
         public static int FOOD = 0;
@@ -45,6 +46,7 @@ namespace BearQuest.Models
             set => _Inventory = value;
         }
 
+        // Constructor for the Person class that initializes the name, hydration value, health level, and adds some items to the inventory
         public Person(string name)
         {
             this._Name = name;
@@ -58,6 +60,7 @@ namespace BearQuest.Models
             AddToInventory(new SodaPop());
         }
 
+        // Method to use an item from the inventory, which can be either food or drink, and updates the person's health or hydration accordingly
         public void UseItem(Item item)
         {
             if(item is Food && HealthLevel < 100)
@@ -97,6 +100,7 @@ namespace BearQuest.Models
             }
         }
 
+        // Method to cook a food item as a person
         public void Cook(Food food)
         {
             Item item = food.Cook();
@@ -112,7 +116,8 @@ namespace BearQuest.Models
             }
         }
 
-        public void displayInventory()
+        // Method to display the inventory of items, including their name and quantity
+        public void DisplayInventory()
         {
             Item item;
             Console.WriteLine("----------------------------");
@@ -126,6 +131,7 @@ namespace BearQuest.Models
             Console.WriteLine("----------------------------");
         }
 
+        // Method to display the inventory of items, filtered by type (food or drink)
         public void DisplayInventory(int type)
         {
             Item item;
@@ -146,6 +152,7 @@ namespace BearQuest.Models
         Console.WriteLine("----------------------------");
         }
 
+        // Method to add an item to the inventory, either by increasing the quantity of an existing item or adding a new item to the list
         public void AddToInventory(Item item)
         {
             bool found = false;

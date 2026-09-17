@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BearQuest.Models
 {
+    // Represents a drink item in the game with a hydration value
     internal abstract class Drink : Item
     {
         private int _HydrationValue;
@@ -21,6 +22,7 @@ namespace BearQuest.Models
             this._HydrationValue = hydrationValue;
         }
 
+        // Method to drink the beverage, using it and printing a message if successful
         public abstract void drink();
     }
 }

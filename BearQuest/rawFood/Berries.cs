@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BearQuest.rawFood
 {
+    // Represents a piece of raw berries that can be cooked into jelly
     internal class Berries : Food
     {
         public Berries() : base("Berries", 1) { }

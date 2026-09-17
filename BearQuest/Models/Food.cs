@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BearQuest.Models
 {
+    // Represents a piece of food in the game with a name and regeneration value
     internal abstract class Food : Item
     {
         private int _RegenerationValue;
@@ -23,9 +24,10 @@ namespace BearQuest.Models
 
         public abstract Food Cook();
 
+        // Method to eat the food, using it and printing a message if successful
         public void eat()
         {
-            if( use())
+            if( Use())
             {
                 Console.WriteLine(("You at the " + this.Name));
             }
