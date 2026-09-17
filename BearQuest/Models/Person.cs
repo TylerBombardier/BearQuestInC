@@ -17,13 +17,31 @@ namespace BearQuest.Models
         private int _HydrationValue;
         private int _HealthLevel;
 
-        public string Name { get; set; }
-        public int HydrationValue { get; set; }
-        public int HealthLevel { get; set; }
+        public string Name
+        {
+            get => _Name;
+            set => _Name = value;
+        }
+
+        public int HydrationValue
+        {
+            get => _HydrationValue;
+            set => _HydrationValue = value;
+        }
+
+        public int HealthLevel
+        {
+            get => _HealthLevel;
+            set => _HealthLevel = value;
+        }
 
         private List<Item> _Inventory = new List<Item>();
 
-        public List<Item> Inventory { get; set; }
+        public List<Item> Inventory
+        {
+            get => _Inventory;
+            set => _Inventory = value;
+        }
 
         public Person(string name)
         {

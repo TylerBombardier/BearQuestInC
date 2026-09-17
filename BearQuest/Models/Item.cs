@@ -11,8 +11,17 @@ namespace BearQuest.Models
         private string _Name;
         private int _Quantity;
 
-        public string Name { get; set; }
-        public int Quantity { get; set; }
+        public string Name
+        {
+            get => _Name;
+            set => _Name = value;
+        }
+
+        public int Quantity
+        {
+            get => _Quantity;
+            set => _Quantity = value;
+        }
 
         public Item(string name)
         {

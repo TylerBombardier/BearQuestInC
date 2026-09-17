@@ -10,7 +10,11 @@ namespace BearQuest.Models
     {
         private int _HydrationValue;
 
-        public int HydrationValue { get; set; }
+        public int HydrationValue
+        {
+            get => _HydrationValue;
+            set => _HydrationValue = value;
+        }
 
         public Drink(string name, int hydrationValue) : base(name)
         {

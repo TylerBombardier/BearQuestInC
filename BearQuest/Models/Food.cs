@@ -10,7 +10,11 @@ namespace BearQuest.Models
     {
         private int _RegenerationValue;
 
-        public int RegenerationValue { get; set; }
+        public int RegenerationValue
+        {
+            get => _RegenerationValue;
+            set => _RegenerationValue = value;
+        }
 
         public Food(string name, int regenerationValue) : base(name)
         {
