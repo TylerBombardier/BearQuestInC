@@ -162,7 +162,7 @@ namespace BearQuest.Models
             {
                 temp = Inventory[i];
 
-                if (item.GetType == temp.GetType)
+                if (item.GetType() == temp.GetType())
                 {
                     temp.Quantity = (temp.Quantity + 1);
                     found = true;
